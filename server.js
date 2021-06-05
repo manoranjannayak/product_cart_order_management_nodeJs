@@ -19,7 +19,7 @@ app.use("/", routes);
 
 //database connection
 mongoose.connect(
-  "mongodb://localhost:27017/scalingweb",
+  "mongodb://localhost:27017/pco_management",
   { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false },
   err => {
     if (err) {
@@ -28,16 +28,6 @@ mongoose.connect(
   }
 );
 
-const server = app.listen(port, () => {
+app.listen(port, () => {
   console.log("server listen on ", port);
-});
-
-const io = require("socket.io")(server);
-
-io.on("connection", socket => {
-    console.log(socket.id);
-});
-
-eventEmitter.on('delivered', (data) => {
-    console.log('Order delivered',data);
 });
